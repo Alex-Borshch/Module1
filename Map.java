@@ -5,10 +5,8 @@ public class Map {
     private int vertexCount;
     private int[][] matrix;
 
-    public Map() {
+    public Map(int matrixSize) {
 
-        Reader reader = new Reader();
-        int matrixSize = reader.getMatrixSize();
         matrix = new int[matrixSize][matrixSize];
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
@@ -23,9 +21,15 @@ public class Map {
     public void addVertex(String name, int label, int x, int y) {
         vertexList[vertexCount++] = new Vertex(name, label, x, y);
     }
+
+    public void addVertex(String name, int x, int y) {
+        vertexList[vertexCount++] = new Vertex(name, x, y);
+    }
+
     public void addVertex(int label) {
         vertexList[vertexCount++] = new Vertex(label);
     }
+
     public void addVertex() {
         vertexList[vertexCount++] = new Vertex();
     }
@@ -41,7 +45,7 @@ public class Map {
     }
 
     public void algorithm() {
-        for (int i = 0; i < matrix.length; i ++) {
+        for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix.length; j++) {
                 if (matrix[i][j] != 0 && !vertexList[j].isVisited()) {
                     if (matrix[i][j] + vertexList[i].getLabel() < vertexList[j].getLabel()) {
@@ -54,7 +58,6 @@ public class Map {
 
 
     }
-
 
 
 }
